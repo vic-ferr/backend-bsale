@@ -9,6 +9,7 @@ const cors = require("cors")
 require("dotenv").config();
 const morgan = require("morgan");
 const conector = require("./app");
+const HOST = "0.0.0.0";
 // path = require("path");
 // console.log(cors)
 
@@ -20,6 +21,8 @@ app.use(cors());
 
 app.use(morgan("dev"));
 
+
+app.listen(PORT, HOST, () => console.log(`hay conexion en puerto${PORT}`));
 app.get(`/product`, (req, res) => {
     const sql = "SELECT * FROM product";
     conector.query(sql, (err, results) => {
@@ -32,7 +35,7 @@ app.get(`/product`, (req, res) => {
     });
 });
 
-app.listen(PORT, () => console.log(`hay conexion en puerto${PORT}`));
+
 
 // app.get("/", (req, res) => {
 //     res.sendFile(path.join(__dirname, "index.html"))

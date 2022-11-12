@@ -4,7 +4,8 @@
   "description": "",
   "main": "bsale.js",
   "scripts": {
-    "dev": "nodemon src/bsale.js"
+    "dev": "nodemon src/bsale.js",
+    "start": "node src/bsale.js "
   },
   "keywords": [],
   "author": "",
