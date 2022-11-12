@@ -21,7 +21,6 @@ app.use(cors());
 
 app.use(morgan("dev"));
 
-
 app.listen(PORT, HOST, () => console.log(`hay conexion en puerto${PORT}`));
 app.get(`/product`, (req, res) => {
     const sql = "SELECT * FROM product";
