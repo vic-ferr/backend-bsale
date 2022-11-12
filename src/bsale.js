@@ -1,27 +1,39 @@
+// import express from "express"
+// import cors from "cors"
+// import dotenv from "dotenv"
+// import { conection } from "./app,js"
+// import { morgan } from "morgan"
 const express = require("express");
 const app = express();
 const cors = require("cors")
-// const morgan = require("morgan");
-const mysql = require("mysql");
-require("dotenv").config()
+require("dotenv").config();
+const morgan = require("morgan");
+const conector = require("./app");
+// path = require("path");
+// console.log(cors)
 
-const PORT = process.env.PORT || 3600
-
-app.use(express.json())
-app.use(cors())
-
+const PORT = process.env.PORT || 3600;
 
 
-// app.use(morgan("dev"));
-mysql.createPool({
-    host: process.env.HOST,
-    usuario: process.env.USER,
-    contarseña: process.env.PASSWORD,
-    database: process.env.DB
-})
+app.use(express.json());
+app.use(cors());
+
+app.use(morgan("dev"));
+
+app.get(`/product`, (req, res) => {
+    const sql = "SELECT * FROM product";
+    conector.query(sql, (err, results) => {
+        if (err) throw err;
+        if (results.length > 0) {
+            res.json(results);
+        } else {
+            res.send("sin resultados");
+        }
+    });
+});
 
 app.listen(PORT, () => console.log(`hay conexion en puerto${PORT}`));
 
-// app.listen(app.get("port"), () => {
-//     console.log("hay conexion");
-// });
+// app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname, "index.html"))
+// })
