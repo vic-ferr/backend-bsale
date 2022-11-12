@@ -34,6 +34,10 @@ app.get(`/product`, (req, res) => {
     });
 });
 
+app.get("/test", (req, res) => {
+    res.send("hola mundo")
+})
+
 
 
 // app.get("/", (req, res) => {
